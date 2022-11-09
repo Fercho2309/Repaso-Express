@@ -13,11 +13,12 @@ dotenv.config(); /* Para que Acepte las Variables de Entorno */
 const app = express();
 app.use(express.json()); /* Indicamos a Nuestro Servidor que la Informacion la Vamos a Recibir y Enviar a traves de JSON*/
 
-conectarDB(); /* Funcion que se Encarga de Hacer la conexion con la BD */
+//conectarDB(); /* Funcion que se Encarga de Hacer la conexion con la BD */
 
 
 // middlewares
-// Se utiliza para realizar la comunicacion entre el servidor del frontend y el backendconst dominiosPermitidos = [process.env.FRONTEND_URL];
+// Se utiliza para realizar la comunicacion entre el servidor del frontend y el backend
+const dominiosPermitidos = [process.env.FRONTEND_URL];
 
 /* Solo Permite el Acceso a Dominios que se establece en el Frontend */
 const corsOptions = {

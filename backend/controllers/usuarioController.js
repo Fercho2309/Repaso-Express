@@ -6,4 +6,4 @@ const prueba = (req, res)=> {
 
 export {
     prueba
-};
+}; 
