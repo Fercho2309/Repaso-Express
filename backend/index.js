@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import conectarDB from './config/db.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
+import productoRoutes from './routes/productoRoutes.js';
+import ventaRoutes from './routes/ventaRoutes.js';
 
 const PORT = process.env.PORT || 4000;
 dotenv.config(); /* Para que Acepte las Variables de Entorno */
@@ -13,7 +15,7 @@ dotenv.config(); /* Para que Acepte las Variables de Entorno */
 const app = express();
 app.use(express.json()); /* Indicamos a Nuestro Servidor que la Informacion la Vamos a Recibir y Enviar a traves de JSON*/
 
-//conectarDB(); /* Funcion que se Encarga de Hacer la conexion con la BD */
+conectarDB(); /* Funcion que se Encarga de Hacer la conexion con la BD */
 
 
 // middlewares
@@ -21,6 +23,7 @@ app.use(express.json()); /* Indicamos a Nuestro Servidor que la Informacion la V
 const dominiosPermitidos = [process.env.FRONTEND_URL];
 
 /* Solo Permite el Acceso a Dominios que se establece en el Frontend */
+
 const corsOptions = {
     origin: function(origin, callback){
         if(dominiosPermitidos.indexOf(origin) !== -1){
@@ -32,10 +35,15 @@ const corsOptions = {
     }
 };
 
-
 app.use(cors(corsOptions));
 
-app.use('/api/usuarios', usuarioRoutes); /* Para Gestionar las Rutas que definimos para la Gestion de los Usuarios y el Controlador que se Encarga de Gestonar la Logica de la Peticion y ais mismo se encarga de direccionar la respuestan */
+app.use('/api/usuarios', usuarioRoutes); /* Gestion Usuarios */
+
+app.use('/api/productos', productoRoutes); /* Gestionar Productos */ 
+
+app.use('/api/ventas', ventaRoutes); /* Gestionar Ventas */
+
+
 
 app.listen(PORT, () => {
     console.log(`Servidor funcionando en el puerto ${PORT} `);
