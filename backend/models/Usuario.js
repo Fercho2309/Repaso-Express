@@ -72,6 +72,6 @@ usuarioShema.methods.comprobarPassword = async function(passwordFormulario) {
     return await bcrypt.compare(passwordFormulario, this.password);
 }
 
-const Usuario = mongoose.model('Usario', usuarioShema);
+const Usuario = mongoose.model('Usuario', usuarioShema);
 
 export default Usuario;

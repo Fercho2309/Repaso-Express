@@ -3,10 +3,13 @@
 import express from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
+import fileupload from 'express-fileupload';
+
 import conectarDB from './config/db.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
 import productoRoutes from './routes/productoRoutes.js';
 import ventaRoutes from './routes/ventaRoutes.js';
+
 
 const PORT = process.env.PORT || 4000;
 dotenv.config(); /* Para que Acepte las Variables de Entorno */
@@ -15,8 +18,12 @@ dotenv.config(); /* Para que Acepte las Variables de Entorno */
 const app = express();
 app.use(express.json()); /* Indicamos a Nuestro Servidor que la Informacion la Vamos a Recibir y Enviar a traves de JSON*/
 
-conectarDB(); /* Funcion que se Encarga de Hacer la conexion con la BD */
+app.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: './files'
+}))
 
+conectarDB(); /* Funcion que se Encarga de Hacer la conexion con la BD */
 
 // middlewares
 // Se utiliza para realizar la comunicacion entre el servidor del frontend y el backend

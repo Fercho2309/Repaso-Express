@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 
 const productoShema = new mongoose.Schema({
@@ -8,24 +8,20 @@ const productoShema = new mongoose.Schema({
         required:true,
         trim:true,
     },
-
     description:{
         type:String,
         required:true,
         trim:true,
     },
-
     precio:{
         type:Number,
         required:true,
         trim:true,
     },
-
     image:{
-        URL:String,
+        url:String, 
         public_id:String,
     },
-
     stock:{
         type:Number,
         required:true,

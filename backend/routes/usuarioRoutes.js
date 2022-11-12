@@ -9,7 +9,14 @@ const router = express.Router(); /* Crear Manejadores de rutas montabls y modula
 
 // Rutas Publicas
 router.get('/prueba', prueba);
-router.get('/', registrar);
+router.post('/', registrar);
 router.get('/confirmar/:token', confirmar);
 
 export default router;
+
+/* 
+GET: OBTENER INFORMACION DE ALGO CREADO,
+POST: CREAR,
+PATCH: ACTUALIZAR,
+DELETE: BORRAR 
+PUT: CONFIRMAR VERDADERO O FALSO*/

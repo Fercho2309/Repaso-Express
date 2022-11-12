@@ -4,7 +4,7 @@ const ventaShema = mongoose.Schema({
 
     cliente:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Usario"
+        ref: "Usuario"
     },
 
     articulos:{
