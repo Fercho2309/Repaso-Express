@@ -16,19 +16,48 @@ const createVentas = async (req, res) => {
     }
 };
 
-const getVenta = async (req, res) => {};
+const getVenta = async (req, res) => {
+    try {
+        const OneVenta = await Venta.findById(req.params.id);if (!OneVenta) {
+            return res.sendStatus(404);
+        } else {
+            return res.json(OneVenta);
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });} 
+};
 
-const getVentas = async (req, res) => {};
+const getVentas = async (req, res) => {
+    try {
+        const ventas = await Venta.find();
+        res.send(ventas);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ message: error.message });} 
+};
 
-const updateVentas = async (req, res) => {};
-
-const deleteVentas = async (req, res) => {};
+const updateVentas = async (req, res) => {
+    try {
+        const estadoVenta = await Venta.findById(req.params.id);if(estadoVenta.estado==="vigente"){
+            estadoVenta.estado="cancelado";
+            await estadoVenta.save();
+            res.json({
+                msg: "Venta cancelado correctamente"
+            });
+        }else{
+            res.json({
+                msg: "La venta ya esta cancelado"
+            });
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+};
 
 export {
     prueba,
     createVentas,
-    getVenta,
+    getVenta, 
     getVentas,
-    updateVentas,
-    deleteVentas
+    updateVentas
 }; 
