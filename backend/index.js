@@ -15,9 +15,9 @@ const PORT = process.env.PORT || 4000;
 dotenv.config(); /* Para que Acepte las Variables de Entorno */
 
 // Se le agrega toda la funcionalidad del servidor de express
-const app = express();
+const app = express(); 
 app.use(express.json()); /* Indicamos a Nuestro Servidor que la Informacion la Vamos a Recibir y Enviar a traves de JSON*/
-
+ 
 app.use(fileupload({
     useTempFiles: true,
     tempFileDir: './files'
